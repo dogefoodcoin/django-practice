@@ -9,3 +9,22 @@ def book_detail_query(request):
 
 def book_detail_path(request, book_id):
     return HttpResponse(f"id: {book_id}")
+
+
+def book_str(request, book_id):
+    return HttpResponse(f"id: {book_id}")
+
+
+def book_slug(request, book_id):
+    return HttpResponse(f"id: {book_id}")
+
+def book_path(request, book_id):
+    return HttpResponse(f"id: {book_id}")
+
+
+
+
+
+
+
+

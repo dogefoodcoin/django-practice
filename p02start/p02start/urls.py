@@ -18,7 +18,7 @@ Including another URLconf
 from django.urls import path
 from django.shortcuts import HttpResponse
 
-from book.views import book_detail_query, book_detail_path
+from book.views import book_detail_query, book_detail_path, book_str, book_slug, book_path
 
 
 def index(request):
@@ -29,5 +29,8 @@ urlpatterns = [
     path('', index),
     path('book', book_detail_query),
     # 不加int类型说明，默认是字符串
-    path('book/<int:book_id>', book_detail_path)
+    path('book/<int:book_id>', book_detail_path),
+    path('book/str/<str:book_id>', book_str),
+    path('book/slug/<slug:book_id>', book_slug, name="book_slug"),
+    path('book/path/<path:book_id>', book_path, name='book_path')
 ]
