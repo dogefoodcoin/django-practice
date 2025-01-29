@@ -15,22 +15,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, reverse
 from django.shortcuts import HttpResponse
-
 from book.views import book_detail_query, book_detail_path, book_str, book_slug, book_path
 
 
 def index(request):
+    # print(reverse("book_str", kwargs={"book_id": 1}))
+    # print(reverse("book_detail_query") + "?id=1&name=war")
+    print(reverse("movie:movie_list"))
     return HttpResponse("Hello world")
 
 urlpatterns = [
     #    path('admin/', admin.site.urls),
-    path('', index),
-    path('book', book_detail_query),
+    path('', index, name='index'),
+    path('book', book_detail_query, name='book_detail_query'),
     # 不加int类型说明，默认是字符串
-    path('book/<int:book_id>', book_detail_path),
-    path('book/str/<str:book_id>', book_str),
+    path('book/<int:book_id>', book_detail_path, name='book_detail_path'),
+    path('book/str/<str:book_id>', book_str, name='book_str'),
     path('book/slug/<slug:book_id>', book_slug, name="book_slug"),
     path('book/path/<path:book_id>', book_path, name='book_path'),
 
